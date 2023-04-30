@@ -4,6 +4,8 @@ namespace AbstractFactory
 {
     internal class Program
     {
+        //The Abstract Factory design pattern provides an interface for
+        //creating families of related or dependent objects without specifying their concrete classes.
         static void Main(string[] args)
         {
             ContinentFactory africa = new AfricaFactory();
@@ -17,13 +19,13 @@ namespace AbstractFactory
     // Use the Abstract Factory when your code needs to work with various families of related products,
     // but you don’t want it to depend on the concrete classes of those products—they might be unknown beforehand
     // or you simply want to allow for future extensibility
-
+    // Abstract factory
     abstract class ContinentFactory
     {
         public abstract Herbivore CreateHerbivore();
         public abstract Carnivore CreateCarnivore();
     }
-
+    // Concrete factory -> implements the operations to create concrete product objects
     class AfricaFactory : ContinentFactory
     {
         public override Carnivore CreateCarnivore()
@@ -37,7 +39,7 @@ namespace AbstractFactory
             return new Wildebeest();
         }
     }
-
+    // Concrete factory -> implements the operations to create concrete product objects
     class AmericaFactory : ContinentFactory
     {
         public override Herbivore CreateHerbivore()
@@ -50,25 +52,25 @@ namespace AbstractFactory
             return new Wolf();
         }
     }
-
+    // AbstractProduct
     abstract class Herbivore
     {
 
     }
-
+    // AbstractProduct
     abstract class Carnivore
     {
         public abstract void Eat(Herbivore h);
     }
-
+    // Product
     class Wildebeest : Herbivore
     {
     }
-
+    // Product
     class Bison : Herbivore
     {
     }
-
+    // Product
     class Lion : Carnivore
     {
         public override void Eat(Herbivore h)
@@ -87,7 +89,7 @@ namespace AbstractFactory
         }
     }
 
-    //Client class
+    //Client class -> uses interfaces declared by AbstractFactory and AbstractProduct classes
     class AnimalWorld
     {
         private Herbivore _herbivore;

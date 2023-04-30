@@ -5,6 +5,8 @@ namespace Builder
 {
     internal class Program
     {
+        //The Builder design pattern separates the construction of a complex object from its
+        //representation so that the same construction process can create different representations
         static void Main(string[] args)
         {
             VehicleBuilder builder;
@@ -26,6 +28,8 @@ namespace Builder
         }
     }
 
+    //Director -> constructs an object using the Builder interface
+    //can exist many directors for example director which creates car without doors
     class Shop
     {
         public void Construct(VehicleBuilder vehicleBuilder)
@@ -37,6 +41,7 @@ namespace Builder
         }
     }
 
+    //Builder -> specifies an abstract interface for creating parts of a Product object
     abstract class VehicleBuilder
     {
         protected Vehicle vehicle;
@@ -50,7 +55,7 @@ namespace Builder
         public abstract void BuildWheels();
         public abstract void BuildDoors();
     }
-
+    //ConcreteBuilder
     class MotorCycleBuilder : VehicleBuilder
     {
         public MotorCycleBuilder()
@@ -74,6 +79,7 @@ namespace Builder
             vehicle["doors"] = "0";
         }
     }
+    //ConcreteBuilder
     class CarBuilder : VehicleBuilder
     {
         public CarBuilder()
@@ -97,6 +103,7 @@ namespace Builder
             vehicle["doors"] = "4";
         }
     }
+    //ConcreteBuilder
     class ScooterBuilder : VehicleBuilder
     {
         public ScooterBuilder()
@@ -121,6 +128,7 @@ namespace Builder
         }
     }
 
+    //Product -> complex object under construction
     class Vehicle
     {
         private string _vehicleType;

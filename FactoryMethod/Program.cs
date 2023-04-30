@@ -5,9 +5,13 @@ namespace FactoryMethod
 {
     internal class Program
     {
+        //The Factory Method design pattern defines an interface for creating an object,
+        //but let subclasses decide which class to instantiate.
+        //This pattern lets a class defer instantiation to subclasses.
+
         static void Main(string[] args)
         {
-            Document[] documents = new Document[3];
+            Document[] documents = new Document[2];
 
             documents[0] = new Resume();
             documents[1] = new Report();
@@ -24,25 +28,25 @@ namespace FactoryMethod
             Console.ReadKey();
         }
     }
-
+    // abstract Product -> defines the interface of objects the factory method creates
     abstract class Page { }
-
-    class SkillsPage: Page { }
-
-    class EducationPage: Page { }
-
-    class ExperiencePage: Page { }
-
-    class IntroductionPage: Page { }
-
-    class ResultsPage: Page { }
-
+    // ConcreteProduct  
+    class SkillsPage : Page { }
+    // ConcreteProduct  
+    class EducationPage : Page { }
+    // ConcreteProduct  
+    class ExperiencePage : Page { }
+    // ConcreteProduct  
+    class IntroductionPage : Page { }
+    // ConcreteProduct  
+    class ResultsPage : Page { }
+    // ConcreteProduct  
     class ConclusionPage : Page {}
-
+    // ConcreteProduct  
     class BibliographyPage : Page { }
-
+    // ConcreteProduct  
     class SummaryPage : Page { }
-
+    // Creator 
     abstract class Document
     {
         private List<Page> _pages = new List<Page>();
@@ -58,8 +62,8 @@ namespace FactoryMethod
 
         public abstract void CreatePages();
     }
-
-    class Resume: Document
+    // ConcreteCreator  
+    class Resume : Document
     {
         public override void CreatePages()
         {
@@ -68,7 +72,7 @@ namespace FactoryMethod
             Pages.Add(new ExperiencePage());
         }
     }
-
+    // ConcreteCreator  
     class Report : Document
     {
         // Factory Method implementation
